@@ -3,11 +3,30 @@
 <br />
 <p>People list:</p>
 <br />
-<ul>
+<!--<ul>
     <li ng-repeat="person in persons">
         <p>
-            <a href="#/home/{{person.Id}}">{{person.Name}}</a>
+            <a href="#/people/{{person.Id}}">{{person.Name}}</a>
         </p>
         <a id="buttonDetails" href="#detailsdiv" class="btn btn-info" role="button">Edit</a>
     </li>
-</ul>
+</ul>-->
+
+<table class="table table-bordered">
+    <tr>
+        <th>Id</th>
+        <th>Name</th>
+
+    </tr>
+
+    <tr ng-repeat="person in persons">
+        <td>
+            {{person.Id}}
+        </td>
+
+        <td>
+            <a href="#/people/{{person.Id}}">{{person.Name}}</a>
+            <a id="buttonDetails" href="#detailsdiv" class="btn btn-info" role="button">Edit</a>
+        </td>
+    </tr>
+</table>

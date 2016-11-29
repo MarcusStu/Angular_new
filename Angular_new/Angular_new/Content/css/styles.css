@@ -1,17 +1,38 @@
 ﻿body {
 }
 
-.header { width: 800px; height: 80px; text-align: center; background-color: #BDBDBD;
+.header {
+    width: 800px;
+    height: 80px;
+    text-align: center;
+    background-color: #BDBDBD;
 }
 
-.footer { background-color: #BDBDBD; text-align: center;
+.footer {
+    background-color: #BDBDBD;
+    text-align: center;
 }
 
-.leftMenu { height: 500px; background-color: #D8D8D8; width: 150px;
+.leftMenu {
+    height: 500px;
+    background-color: #D8D8D8;
+    width: 150px;
 }
 
-.mainContent { height: 500px; background-color: #E6E6E6; width: 650px;
+.mainContent {
+    height: 500px;
+    background-color: #E6E6E6;
+    width: 650px;
 }
 
-a{ display:block; padding:5px
+a {
+    display: block;
+    padding: 5px;
+}
+
+li {
+    text-decoration: none;
+    border: 1px solid dodgerblue;
+    margin-bottom: 5px;
+    margin-top: 5px;
 }

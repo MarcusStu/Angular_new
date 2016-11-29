@@ -7,17 +7,17 @@ var app = angular.module("myApp", ["ngRoute"])
                             templateUrl: "/Templates/home.html",
                             controller: "homeController"
                         })
-                        .when("/courses", {
-                            templateUrl: "/Templates/courses.html",
-                            controller: "coursesController"
-                        })
-                        .when("/students", {
-                            templateUrl: "/Templates/students.html",
-                            controller: "studentsController"
-                        })
-                         .when("/home/:Id", {
-                             templateUrl: "/Templates/studentDetail.html",
-                             controller: "studentDetailsController"
+                        //.when("/courses", {
+                        //    templateUrl: "/Templates/courses.html",
+                        //    controller: "coursesController"
+                        //})
+                        //.when("/students", {
+                        //    templateUrl: "/Templates/students.html",
+                        //    controller: "studentsController"
+                        //})
+                         .when("/people/:Id", {
+                             templateUrl: "/Templates/peopleDetail.html",
+                             controller: "peopleDetailsController"
                          })
                      .otherwise({
                          redirectTo: "/home"
@@ -34,14 +34,14 @@ var app = angular.module("myApp", ["ngRoute"])
     })
 })
 
-.controller("studentDetailsController", function ($scope, $http, $routeParams) {
+.controller("peopleDetailsController", function ($scope, $http, $routeParams) {
     $http({
         url: "People/AjaxThatReturnsJsonPerson/" + $routeParams.Id,
 
         method: "get"
     })
         .then(function (response) {
-            $scope.studentdetail = response.data;
+            $scope.peopledetail = response.data;
             console.log(response.data);
         })
 })
