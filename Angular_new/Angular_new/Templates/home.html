@@ -1,0 +1,13 @@
+﻿<h1>{{message}}</h1>
+<p>Home View</p>
+<br />
+<p>People list:</p>
+<br />
+<ul>
+    <li ng-repeat="person in persons">
+        <p>
+            <a href="#/home/{{person.Id}}">{{person.Name}}</a>
+        </p>
+        <a id="buttonDetails" href="#detailsdiv" class="btn btn-info" role="button">Edit</a>
+    </li>
+</ul>

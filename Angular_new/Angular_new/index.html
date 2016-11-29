@@ -1,0 +1,51 @@
+﻿<!DOCTYPE html>
+<html ng-app="myApp">
+<head>
+    <title></title>
+
+    <meta charset="utf-8" />
+
+    <!--Styles-->
+    <link href="Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="Content/css/styles.css" rel="stylesheet" />
+    <link href="Content/css/Site.css" rel="stylesheet" />
+
+    <!--Scripts-->
+    <script src="scripts/jquery-1.10.2.js"></script>
+    <script src="scripts/bootstrap.min.js"></script>
+    <script src="scripts/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular-route.min.js"></script>
+    <script src="Content/angularJS/script.js"></script>
+</head>
+<body>
+    <table style="font-family: Arial">
+        <tr>
+            <td colspan="2" class="header">
+                <h1>
+                    marcus angular
+                </h1>
+            </td>
+        </tr>
+        <tr>
+            <td class="leftMenu">
+                <a href="#/home">Home</a>
+                <a href="#/courses">Courses</a>
+                <a href="#/students">Students</a>
+            </td>
+            <td class="mainContent">
+                <ng-view></ng-view>
+            </td>
+
+            <td>
+                <div id="detailsdiv"></div>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2" class="footer">
+                <b>marcus angular footer</b>
+            </td>
+        </tr>
+    </table>
+
+</body>
+</html>
