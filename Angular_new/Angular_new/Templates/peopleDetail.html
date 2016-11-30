@@ -1,25 +1,74 @@
 ﻿<h1>People Details</h1>
 
-<table style="border:1px solid black">
-    <tr>
-        <td>Id</td>
-        <td>{{peopledetail.Id}}</td>
-    </tr>
-    <tr>
-        <td>Name</td>
-        <td>{{peopledetail.Name}}</td>
-    </tr>
-    <tr>
-        <td>Gender</td>
-        <td>{{peopledetail.Gender}}</td>
-    </tr>
-    <tr>
-        <td>City</td>
-        <td>{{peopledetail.City}}</td>
-    </tr>
-    <tr>
-        <td>Adress</td>
-        <td>{{peopledetail.Adress}}</td>
-    </tr>
-</table>
+<form name="editForm" ng-submit="editForm.$valid && submit(editForm)" novalidate>
+    <table style="border:1px solid black">
+
+        <tr>
+            <td>Id</td>
+            <td>{{peopledetail.Id}}</td>
+        </tr>
+        <tr>
+            <td>Name</td>
+            <td>
+                <div ng-hide="isEditForm">
+                    <span>{{peopledetail.Name}}</span>
+                </div>
+
+                <div ng-show="isEditForm">
+                    <input ng-model="peopledetail.Name" />
+                </div>
+
+            </td>
+        </tr>
+        <tr>
+            <td>Gender</td>
+            <td>
+                <div ng-hide="isEditForm">
+                    <span>{{peopledetail.Gender}}</span>
+                </div>
+
+                <div ng-show="isEditForm">
+                    <input ng-model="peopledetail.Gender" />
+                </div>
+
+            </td>
+        </tr>
+        <tr>
+            <td>City</td>
+            <td>
+                <div ng-hide="isEditForm">
+                    <span>{{peopledetail.City}}</span>
+                </div>
+
+                <div ng-show="isEditForm">
+                    <input ng-model="peopledetail.City" />
+                </div>
+
+            </td>
+        </tr>
+        <tr>
+            <td>Adress</td>
+            <td>
+                <div ng-hide="isEditForm">
+                    <span>{{peopledetail.Adress}}</span>
+                </div>
+
+                <div ng-show="isEditForm">
+                    <input ng-model="peopledetail.Adress" />
+                </div>
+
+            </td>
+        </tr>
+    </table>
+
+    <div ng-hide="isEditForm">
+        <input name="edit" id="edit" value="Edit" class="btn btn-primary" type="button" ng-click="isEditForm=true;" />
+    </div>
+
+    <div ng-show="isEditForm">
+        <input name="save" id="save" value="Save" class="btn btn-success" type="button" ng-click="isEditForm=false;" />
+        <input name="cancel" id="cancel" value="Cancel" class="btn btn-warning" type="button" ng-click="isEditForm=false;" />
+    </div>
+</form>
+<br />
 <a href="#/home">Back to People list</a>

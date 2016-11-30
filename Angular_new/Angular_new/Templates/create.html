@@ -1,0 +1,34 @@
+﻿<h1>Create Person</h1>
+
+<form name="createForm" ng-submit="sendform()" novalidate>
+    <table style="border:1px solid black">
+
+        <tr>
+            <td>Name</td>
+            <td>
+                <input ng-model="form.Name" placeholder="Your name here" />
+            </td>
+        </tr>
+        <tr>
+            <td>Gender</td>
+            <td>
+                <input ng-model="form.Gender" placeholder="Male/Female" />
+            </td>
+        </tr>
+        <tr>
+            <td>City</td>
+            <td>
+                <input ng-model="form.City" placeholder="City name here" />
+            </td>
+        </tr>
+        <tr>
+            <td>Adress</td>
+            <td>
+                <input ng-model="form.Adress" placeholder="Your adress here" />
+            </td>
+        </tr>
+    </table>
+    <input name="create" id="create" value="Create" class="btn btn-success" type="submit" />
+</form>
+<br />
+<a href="#/home">Back to People list</a>

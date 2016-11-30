@@ -1,0 +1,42 @@
+﻿<h1>Remove Person</h1>
+
+<h3>Are you sure you want to remove {{peopleRemoveDetail.Name}}?</h3>
+
+<form name="removeForm" ng-submit="sendRemoveform()" novalidate>
+    <table style="border:1px solid black">
+
+        <tr>
+            <td>Id</td>
+            <td>{{peopleRemoveDetail.Id}}</td>
+        </tr>
+        <tr>
+            <td>Name</td>
+            <td>
+                {{peopleRemoveDetail.Name}}
+            </td>
+        </tr>
+        <tr>
+            <td>Gender</td>
+            <td>
+                {{peopleRemoveDetail.Gender}}
+            </td>
+        </tr>
+        <tr>
+            <td>City</td>
+            <td>
+                {{peopleRemoveDetail.City}}
+            </td>
+        </tr>
+        <tr>
+            <td>Adress</td>
+            <td>
+                {{peopleRemoveDetail.Adress}}
+            </td>
+        </tr>
+    </table>
+
+    <input name="remove" id="remove" value="Remove" class="btn btn-danger" type="submit" />
+
+</form>
+<br />
+<a href="#/home">Back to People list</a>

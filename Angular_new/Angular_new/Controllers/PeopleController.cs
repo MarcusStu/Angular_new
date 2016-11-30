@@ -36,5 +36,48 @@ namespace Angular_new.Controllers
 
             return Json(myInfo, JsonRequestBehavior.AllowGet);
         }
+
+        public JsonResult Edit(int? Id)
+        {
+            object newInfo = null;
+            newInfo = db.People.Single(p => p.Id == Id);
+            return Json(newInfo, JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult Edit(int? Id, string Name, string Gender, string Adress, string City)
+        {
+            object newInfo = null;
+            //newInfo = db.People.Add();
+            db.SaveChanges();
+            return Json(newInfo, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpPost]
+        public JsonResult Create(Person newPerson) //, int Id, string Name, string Gender, string Adress, string City
+        {
+            object newInfo = null;
+            newInfo = db.People.Add(newPerson);
+            db.SaveChanges();
+            return Json(newInfo, JsonRequestBehavior.AllowGet);
+        }
+
+
+
+        public JsonResult Remove(int? Id)
+        {
+
+            var aPerson = db.People.SingleOrDefault(p => p.Id == Id);
+
+            if (aPerson == null)
+            {
+                return Json(aPerson.Name + "Dident exist in database", JsonRequestBehavior.AllowGet);
+            }
+
+            db.People.Remove(aPerson);
+            db.SaveChanges();
+
+
+            return Json(aPerson, JsonRequestBehavior.AllowGet);
+        }
     }
 }

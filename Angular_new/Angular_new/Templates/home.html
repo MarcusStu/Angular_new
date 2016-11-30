@@ -1,22 +1,13 @@
 ﻿<h1>{{message}}</h1>
-<p>Home View</p>
-<br />
-<p>People list:</p>
-<br />
-<!--<ul>
-    <li ng-repeat="person in persons">
-        <p>
-            <a href="#/people/{{person.Id}}">{{person.Name}}</a>
-        </p>
-        <a id="buttonDetails" href="#detailsdiv" class="btn btn-info" role="button">Edit</a>
-    </li>
-</ul>-->
+<p><b>Home View</b></p>
 
 <table class="table table-bordered">
     <tr>
         <th>Id</th>
         <th>Name</th>
-
+        <th>Details</th>
+        <th>Edit</th>
+        <th>Delete</th>
     </tr>
 
     <tr ng-repeat="person in persons">
@@ -25,8 +16,31 @@
         </td>
 
         <td>
-            <a href="#/people/{{person.Id}}">{{person.Name}}</a>
-            <a id="buttonDetails" href="#detailsdiv" class="btn btn-info" role="button">Edit</a>
+            {{person.Name}}
+        </td>
+
+        <td>
+            <a id="detailsButton" href="#/people/{{person.Id}}" class="btn btn-warning" role="button">Details</a>
+        </td>
+
+        <td>
+            <a id="editButton" href="#detailsdiv" class="btn btn-info" role="button">Edit</a>
+        </td>
+        <td>
+            <a id="deleteButton" href="#/remove/{{person.Id}}" class="btn btn-danger" role="button">Delete</a>
         </td>
     </tr>
 </table>
+
+<a id="createButton" href="#/create" class="btn btn-success" role="button">Create Person</a>
+<!--<button ng-click="persons.reloadData()">Reload List</button>-->
+
+<!--<div ng-hide="isAddForm">
+    <button ng-click="isAddForm=true;">Add Student</button>
+</div>-->
+<!--<div ng-show="isAddForm">
+    <label>Enter name</label><input ng-model="newStudent.name" />
+    <label>Enter Age</label><input ng-model="newStudent.age" />
+    <button ng-click="addStudent()">Add</button>
+    <button ng-click="isAddForm=false;">Cancel</button>
+</div>-->

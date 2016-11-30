@@ -7,6 +7,14 @@ var app = angular.module("myApp", ["ngRoute"])
                             templateUrl: "/Templates/home.html",
                             controller: "homeController"
                         })
+                         .when("/create", {
+                             templateUrl: "/Templates/create.html",
+                             controller: "createController"
+                         })
+                         .when("/remove/:Id", {
+                             templateUrl: "/Templates/remove.html",
+                             controller: "removeController"
+                         })
                         //.when("/courses", {
                         //    templateUrl: "/Templates/courses.html",
                         //    controller: "coursesController"
@@ -27,6 +35,10 @@ var app = angular.module("myApp", ["ngRoute"])
 
 
 .controller("homeController", function ($scope, $http) {
+    //var vm = this;
+    //vm.reloadData = function () {
+    //    $route.reloadData();
+    //}
     $http.get("People/AjaxThatReturnsJson")
     .then(function (response) {
         $scope.persons = response.data;
@@ -45,6 +57,55 @@ var app = angular.module("myApp", ["ngRoute"])
             console.log(response.data);
         })
 })
+
+.controller("createController", function ($scope, $http, $location) {
+
+    $scope.sendform = function () {
+        console.log($scope.form);
+        $http({
+
+            url: "People/Create",
+            method: "post",
+            data: newPerson = $scope.form
+        })
+        .success(function (response) {
+            $scope.successCreate = response.data;
+            console.log(response.data);
+            alert("Created successfully!");
+            $location.url('/home')
+        })
+    }
+})
+
+.controller("removeController", function ($scope, $http, $routeParams, $location) {
+    $scope.param = $routeParams;
+    $http({
+        url: "People/AjaxThatReturnsJsonPerson/" + $routeParams.Id,
+        method: "get"
+    })
+    .then(function (response) {
+        $scope.peopleRemoveDetail = response.data;
+        console.log(response.data);
+    })
+
+    $scope.sendRemoveform = function () {
+        console.log('removeAjax ' + $scope.param.Id);
+        $http({
+            url: "People/Remove/" + $scope.param.Id,
+            method: "post",
+        })
+
+        .success(function (response) {
+            $scope.successDelete = response.data;
+            console.log(response.data);
+            alert("Removed successfully!");
+            $location.url('/home')
+        })
+    }
+})
+
+
+
 
 
 
@@ -73,13 +134,13 @@ var app = angular.module("myApp", ["ngRoute"])
 
 
 //Load partial view inside the detailsdiv on button click
-$('#buttonDetails').click(function () {
-    $.ajax({
-        type: 'POST',
-        url: '@Url.Content("~/Shared/_Studentdetails")',
-        data: objectToPass,
-        success: function (data) {
-            $('#detailsdiv').innerHTML = data;
-        }
-    });
-});
+//$('#buttonDetails').click(function () {
+//    $.ajax({
+//        type: 'POST',
+//        url: '@Url.Content("~/Shared/_Studentdetails")',
+//        data: objectToPass,
+//        success: function (data) {
+//            $('#detailsdiv').innerHTML = data;
+//        }
+//    });
+//});
