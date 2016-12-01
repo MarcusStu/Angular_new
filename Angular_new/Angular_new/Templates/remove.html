@@ -3,34 +3,40 @@
 <h3>Are you sure you want to remove {{peopleRemoveDetail.Name}}?</h3>
 
 <form name="removeForm" ng-submit="sendRemoveform()" novalidate>
-    <table style="border:1px solid black">
+    <table>
 
         <tr>
-            <td>Id</td>
+            <td id="tdHeader">Id</td>
             <td>{{peopleRemoveDetail.Id}}</td>
         </tr>
         <tr>
-            <td>Name</td>
+            <td id="tdHeader">Name</td>
             <td>
                 {{peopleRemoveDetail.Name}}
             </td>
         </tr>
         <tr>
-            <td>Gender</td>
+            <td id="tdHeader">Gender</td>
             <td>
                 {{peopleRemoveDetail.Gender}}
             </td>
         </tr>
         <tr>
-            <td>City</td>
+            <td id="tdHeader">City</td>
             <td>
                 {{peopleRemoveDetail.City}}
             </td>
         </tr>
         <tr>
-            <td>Adress</td>
+            <td id="tdHeader">Adress</td>
             <td>
                 {{peopleRemoveDetail.Adress}}
+            </td>
+        </tr>
+        <tr>
+            <td id="tdHeader">Country</td>
+            <td>
+                {{peopleRemoveDetail.Country}}
             </td>
         </tr>
     </table>
@@ -39,4 +45,10 @@
 
 </form>
 <br />
-<a href="#/home">Back to People list</a>
+<a id="homeButton" href="#/home" class="btn btn-default" role="button">Back to People List</a>
+
+<style>
+    #tdHeader {
+        font-weight: bold;
+    }
+</style>

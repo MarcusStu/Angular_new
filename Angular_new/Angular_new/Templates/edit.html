@@ -1,43 +1,43 @@
 ﻿<h1>Edit Person</h1>
 
 <form name="editForm" ng-submit="sendEditForm()" ng-model="peopleEdit">
-    <table style="border:1px solid black">
+    <table>
 
         <tr>
-            <td>Id</td>
-            <td>{{peopleEdit.Id}}</td>
+            <td id="tdHeader">Id</td>
+            <td><input class="form-control" name="name" ng-model="peopleEdit.Id" disabled /></td>
         </tr>
         <tr>
-            <td>Name</td>
+            <td id="tdHeader">Name</td>
             <td>
-                <input name="name" ng-model="peopleEdit.Name" required />
+                <input class="form-control" name="name" ng-model="peopleEdit.Name" placeholder="Your name here" required />
                 <span id="validationInputs" ng-show="editForm.name.$touched && editForm.name.$invalid">The name is required.</span>
             </td>
         </tr>
         <tr>
-            <td>Gender</td>
+            <td id="tdHeader">Gender</td>
             <td>
-                <input name="gender" ng-model="peopleEdit.Gender" required />
+                <input class="form-control" name="gender" ng-model="peopleEdit.Gender" placeholder="Male/Female" required />
                 <span id="validationInputs" ng-show="editForm.gender.$touched && editForm.gender.$invalid">The gender is required.</span>
             </td>
         </tr>
         <tr>
-            <td>City</td>
+            <td id="tdHeader">City</td>
             <td>
-                <input name="city" ng-model="peopleEdit.City" required />
+                <input class="form-control" name="city" ng-model="peopleEdit.City" placeholder="City name here" required />
                 <span id="validationInputs" ng-show="editForm.city.$touched && editForm.city.$invalid">The city is required.</span>
         </tr>
         <tr>
-            <td>Adress</td>
+            <td id="tdHeader">Adress</td>
             <td>
-                <input name="adress" ng-model="peopleEdit.Adress" required />
+                <input class="form-control" name="adress" ng-model="peopleEdit.Adress" placeholder="Your adress here" required />
                 <span id="validationInputs" ng-show="editForm.adress.$touched && editForm.adress.$invalid">The adress is required.</span>
             </td>
         </tr>
         <tr>
-            <td>Country</td>
+            <td id="tdHeader">Country</td>
             <td>
-                <select name="country" ng-model="peopleEdit.Country" ng-options="item for item in countries" required>
+                <select class="form-control" name="country" ng-model="peopleEdit.Country" ng-options="item for item in countries" required>
                     <option value="">- Choose Country -</option>
                 </select>
                 <span id="validationInputs" ng-show="editForm.country.$touched && editForm.country.$invalid">The country is required.</span>
@@ -45,13 +45,16 @@
         </tr>
     </table>
     <input name="save" id="save" value="Save" class="btn btn-success" type="submit" />
+    <a id="deleteButton" href="#/remove/{{peopleEdit.Id}}" class="btn btn-danger" role="button">Delete</a>
 </form>
 <br />
-<a href="#/home">Back to People list</a>
+<a id="homeButton" href="#/home" class="btn btn-default" role="button">Back to People List</a>
 
 <style>
     #validationInputs {
     color: #ff0000;
-    
 }
+    #tdHeader {
+        font-weight: bold;
+    }
 </style>

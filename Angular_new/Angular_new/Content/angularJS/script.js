@@ -2,6 +2,8 @@
 
 var app = angular.module("myApp", ["ngRoute"])
                  .config(function ($routeProvider) {
+
+                     // Routes to specific urls and sends the request to a specific controller
                      $routeProvider
                         .when("/home", {
                             templateUrl: "/Templates/home.html",
@@ -19,30 +21,17 @@ var app = angular.module("myApp", ["ngRoute"])
                              templateUrl: "/Templates/edit.html",
                              controller: "editController"
                          })
-                        //.when("/courses", {
-                        //    templateUrl: "/Templates/courses.html",
-                        //    controller: "coursesController"
-                        //})
-                        //.when("/students", {
-                        //    templateUrl: "/Templates/students.html",
-                        //    controller: "studentsController"
-                        //})
                          .when("/people/:Id", {
                              templateUrl: "/Templates/peopleDetail.html",
                              controller: "peopleDetailsController"
                          })
+                         // If the request does not match any of the above, it redirects to /home
                      .otherwise({
                          redirectTo: "/home"
                      })
-                     //$locationProvider.html5Mode(true);
                  })
 
-
 .controller("homeController", function ($scope, $http) {
-    //var vm = this;
-    //vm.reloadData = function () {
-    //    $route.reloadData();
-    //}
     $http.get("People/AjaxThatReturnsJson")
     .then(function (response) {
         $scope.persons = response.data;
@@ -123,21 +112,26 @@ var app = angular.module("myApp", ["ngRoute"])
 })
 
 .controller("editController", function ($scope, $http, $routeParams, $location) {
+
+    // Uses/gets the countries method from PeopleController
     $http.get("People/GetCountries")
         .then(function (response) {
             $scope.countries = response.data;
         })
 
+    // Gets the id from the specific person
     $scope.param = $routeParams;
     $http({
         url: "People/AjaxThatReturnsJsonPerson/" + $routeParams.Id,
         method: "get"
     })
+        // Store the information in a scope
     .then(function (response) {
         $scope.peopleEdit = response.data;
         console.log(response.data);
     })
 
+    // Post the information up to the controller
     $scope.sendEditForm = function () {
         console.log('editAjax ' + $scope.param.Id);
         console.log('personEdit name: ' + $scope.peopleEdit.Name);
@@ -147,6 +141,7 @@ var app = angular.module("myApp", ["ngRoute"])
             data: { Id: $scope.peopleEdit.Id, Name: $scope.peopleEdit.Name, Gender: $scope.peopleEdit.Gender, Adress: $scope.peopleEdit.Adress, City: $scope.peopleEdit.City, Country: $scope.peopleEdit.Country },
         })
 
+            // Success message (alert = popup box in browser) and redirects to /home
         .success(function (response) {
             $scope.successEdit = response.data;
             console.log(response.data);
@@ -155,44 +150,3 @@ var app = angular.module("myApp", ["ngRoute"])
         })
     }
 })
-
-
-
-
-
-
-
-//.controller("studentDetailsController", function ($scope, $http) {
-//    $http.get("People/AjaxThatReturnsJsonPerson")
-//    .then(function (response) {
-//        $scope.studentdetail = response.data;
-//        console.log(response.data);
-//    })
-//})
-
-
-//.controller("coursesController", function ($scope) {
-//    $scope.courses = ["C#", "ASP.NET", "SQL Server", "Linux"];
-//})
-
-//.controller("studentsController", function ($scope, $http) {
-//    //$http.get("StudentService.asmx/GetAllStudents")
-//    //.then(function (response) {
-//    //    $scope.students = response.data;
-//    //})
-//    $scope.students = ["C#", "ASP.NET", "SQL Server", "Linux"];
-//})
-
-
-
-//Load partial view inside the detailsdiv on button click
-//$('#buttonDetails').click(function () {
-//    $.ajax({
-//        type: 'POST',
-//        url: '@Url.Content("~/Shared/_Studentdetails")',
-//        data: objectToPass,
-//        success: function (data) {
-//            $('#detailsdiv').innerHTML = data;
-//        }
-//    });
-//});

@@ -5,6 +5,7 @@
     <tr>
         <th>Id</th>
         <th>Name</th>
+        <th>Country</th>
         <th>Details</th>
         <th>Edit</th>
         <th>Delete</th>
@@ -20,6 +21,10 @@
         </td>
 
         <td>
+            {{person.Country}}
+        </td>
+
+        <td>
             <a id="detailsButton" href="#/people/{{person.Id}}" class="btn btn-warning" role="button">Details</a>
         </td>
 
@@ -32,15 +37,4 @@
     </tr>
 </table>
 
-<a id="createButton" href="#/create" class="btn btn-success" role="button">Create Person</a>
-<!--<button ng-click="persons.reloadData()">Reload List</button>-->
-
-<!--<div ng-hide="isAddForm">
-    <button ng-click="isAddForm=true;">Add Student</button>
-</div>-->
-<!--<div ng-show="isAddForm">
-    <label>Enter name</label><input ng-model="newStudent.name" />
-    <label>Enter Age</label><input ng-model="newStudent.age" />
-    <button ng-click="addStudent()">Add</button>
-    <button ng-click="isAddForm=false;">Cancel</button>
-</div>-->
+<!--<a id="createButton" href="#/create" class="btn btn-success" role="button">Create Person</a>-->

@@ -18,6 +18,7 @@ namespace Angular_new.Controllers
             return View();
         }
 
+        //Gets a list of all peeople in the db
         public JsonResult AjaxThatReturnsJson()
         {
 
@@ -25,6 +26,7 @@ namespace Angular_new.Controllers
             return Json(myInfo, JsonRequestBehavior.AllowGet);
         }
 
+        //Gets details of 1 person
         public JsonResult AjaxThatReturnsJsonPerson(int? Id)
         {
             object myInfo = null;
@@ -39,6 +41,7 @@ namespace Angular_new.Controllers
             return Json(myInfo, JsonRequestBehavior.AllowGet);
         }
 
+        //Edits a person GET id
         public JsonResult Edit(int? Id)
         {
             object editInfo = null;
@@ -46,6 +49,7 @@ namespace Angular_new.Controllers
             return Json(editInfo, JsonRequestBehavior.AllowGet);
         }
 
+        //Edits a person POST
         [HttpPost]
         public JsonResult Edit(Person person)
         {
@@ -58,8 +62,9 @@ namespace Angular_new.Controllers
             return Json(person, JsonRequestBehavior.AllowGet);
         }
 
+        //Creates a person
         [HttpPost]
-        public JsonResult Create(Person newPerson) //, int Id, string Name, string Gender, string Adress, string City, string Country
+        public JsonResult Create(Person newPerson) // newPerson gets = int Id, string Name, string Gender, string Adress, string City, string Country
         {
             object newInfo = null;
             newInfo = db.People.Add(newPerson);
@@ -67,6 +72,7 @@ namespace Angular_new.Controllers
             return Json(newInfo, JsonRequestBehavior.AllowGet);
         }
 
+        //Removes a person
         public JsonResult Remove(int? Id)
         {
 
@@ -84,6 +90,7 @@ namespace Angular_new.Controllers
             return Json(aPerson, JsonRequestBehavior.AllowGet);
         }
 
+        //Loads countries from the enum class Country and adds to a list
         public JsonResult GetCountries()
         {
             var countriesenum = Enum.GetValues(typeof(Countries));

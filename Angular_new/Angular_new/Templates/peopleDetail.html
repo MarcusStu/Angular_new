@@ -1,31 +1,29 @@
 ﻿<h1>People Details</h1>
 
-    <table style="border:1px solid black">
+    <table>
 
         <tr>
-            <td>Id</td>
+            <td id="tdHeader">Id</td>
             <td>{{peopledetail.Id}}</td>
         </tr>
         <tr>
-            <td>Name</td>
+            <td id="tdHeader">Name</td>
             <td>{{peopledetail.Name}}</td>
         </tr>
         <tr>
-            <td>Gender</td>
-            <td>
-                {{peopledetail.Gender}}
-            </td>
+            <td id="tdHeader">Gender</td>
+            <td>{{peopledetail.Gender}}</td>
         </tr>
         <tr>
-            <td>City</td>
-            <td>{{peopledetail.City}}
+            <td id="tdHeader">City</td>
+            <td>{{peopledetail.City}}</td>
         </tr>
         <tr>
-            <td>Adress</td>
+            <td id="tdHeader">Adress</td>
             <td>{{peopledetail.Adress}}</td>
         </tr>
         <tr>
-            <td>Country</td>
+            <td id="tdHeader">Country</td>
             <td>{{peopledetail.Country}}</td>
         </tr>
     </table>
@@ -33,4 +31,11 @@
 <br />
 <a id="editButton" href="#/edit/{{peopledetail.Id}}" class="btn btn-info" role="button">Edit</a>
 <a id="deleteButton" href="#/remove/{{peopledetail.Id}}" class="btn btn-danger" role="button">Delete</a>
-<a href="#/home">Back to People list</a>
+<br /><br />
+<a id="homeButton" href="#/home" class="btn btn-default" role="button">Back to People List</a>
+
+<style>
+    #tdHeader {
+        font-weight: bold;
+    }
+</style>

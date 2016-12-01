@@ -1,40 +1,40 @@
 ﻿<h1>Create Person</h1>
 
 <form name="createForm" ng-submit="sendform()" ng-model="form">
-    <table style="border:1px solid black">
+    <table>
 
         <tr>
-            <td>Name</td>
+            <td id="tdHeader">Name</td>
             <td>
-                <input name="name" ng-model="form.Name" placeholder="Your name here" required />
+                <input class="form-control" name="name" ng-model="form.Name" placeholder="Your name here" required />
                 <span id="validationInputs" ng-show="createForm.name.$touched && createForm.name.$invalid">The name is required.</span>
             </td>
         </tr>
         <tr>
-            <td>Gender</td>
+            <td id="tdHeader">Gender</td>
             <td>
-                <input name="gender" ng-model="form.Gender" placeholder="Male/Female" required />
+                <input class="form-control" name="gender" ng-model="form.Gender" placeholder="Male/Female" required />
                 <span id="validationInputs" ng-show="createForm.gender.$touched && createForm.gender.$invalid">The gender is required.</span>
             </td>
         </tr>
         <tr>
-            <td>City</td>
+            <td id="tdHeader">City</td>
             <td>
-                <input name="city" ng-model="form.City" placeholder="City name here" required />
+                <input class="form-control" name="city" ng-model="form.City" placeholder="City name here" required />
                 <span id="validationInputs" ng-show="createForm.city.$touched && createForm.city.$invalid">The city is required.</span>
             </td>
         </tr>
         <tr>
-            <td>Adress</td>
+            <td id="tdHeader">Adress</td>
             <td>
-                <input name="adress" ng-model="form.Adress" placeholder="Your adress here" required />
+                <input class="form-control" name="adress" ng-model="form.Adress" placeholder="Your adress here" required />
                 <span id="validationInputs" ng-show="createForm.adress.$touched && createForm.adress.$invalid">The adress is required.</span>
             </td>
         </tr>
         <tr>
-            <td>Country</td>
+            <td id="tdHeader">Country</td>
             <td>
-                <select name="country" ng-model="form.Country" ng-options="item for item in countries" required>
+                <select class="form-control" name="country" ng-model="form.Country" ng-options="item for item in countries" required>
                     <option value="">- Choose Country -</option>
                 </select>
                 <span id="validationInputs" ng-show="createForm.country.$touched && createForm.country.$invalid">The country is required.</span>
@@ -44,4 +44,13 @@
     <input name="create" id="create" value="Create" class="btn btn-success" type="submit" />
 </form>
 <br />
-<a href="#/home">Back to People list</a>
+<a id="homeButton" href="#/home" class="btn btn-default" role="button">Back to People List</a>
+
+<style>
+    #validationInputs {
+    color: #ff0000;
+}
+    #tdHeader {
+        font-weight: bold;
+    }
+</style>
