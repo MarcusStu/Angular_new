@@ -1,9 +1,11 @@
 ﻿using Angular_new.Models;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using static Angular_new.Models.Country;
 
 namespace Angular_new.Controllers
 {
@@ -39,29 +41,31 @@ namespace Angular_new.Controllers
 
         public JsonResult Edit(int? Id)
         {
-            object newInfo = null;
-            newInfo = db.People.Single(p => p.Id == Id);
-            return Json(newInfo, JsonRequestBehavior.AllowGet);
-        }
-
-        public JsonResult Edit(int? Id, string Name, string Gender, string Adress, string City)
-        {
-            object newInfo = null;
-            //newInfo = db.People.Add();
-            db.SaveChanges();
-            return Json(newInfo, JsonRequestBehavior.AllowGet);
+            object editInfo = null;
+            editInfo = db.People.Single(p => p.Id == Id);
+            return Json(editInfo, JsonRequestBehavior.AllowGet);
         }
 
         [HttpPost]
-        public JsonResult Create(Person newPerson) //, int Id, string Name, string Gender, string Adress, string City
+        public JsonResult Edit(Person person)
+        {
+            if (ModelState.IsValid)
+            {
+                db.Entry(person).State = EntityState.Modified;
+                db.SaveChanges();
+                return Json(person, JsonRequestBehavior.AllowGet);
+            }
+            return Json(person, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpPost]
+        public JsonResult Create(Person newPerson) //, int Id, string Name, string Gender, string Adress, string City, string Country
         {
             object newInfo = null;
             newInfo = db.People.Add(newPerson);
             db.SaveChanges();
             return Json(newInfo, JsonRequestBehavior.AllowGet);
         }
-
-
 
         public JsonResult Remove(int? Id)
         {
@@ -70,7 +74,7 @@ namespace Angular_new.Controllers
 
             if (aPerson == null)
             {
-                return Json(aPerson.Name + "Dident exist in database", JsonRequestBehavior.AllowGet);
+                return Json(aPerson.Name + "Didn't exist in the database!", JsonRequestBehavior.AllowGet);
             }
 
             db.People.Remove(aPerson);
@@ -78,6 +82,19 @@ namespace Angular_new.Controllers
 
 
             return Json(aPerson, JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult GetCountries()
+        {
+            var countriesenum = Enum.GetValues(typeof(Countries));
+            List<string> countries = new List<string>();
+
+            foreach (var country in countriesenum)
+            {
+                countries.Add(country.ToString());
+            }
+
+            return Json(countries, JsonRequestBehavior.AllowGet);
         }
     }
 }

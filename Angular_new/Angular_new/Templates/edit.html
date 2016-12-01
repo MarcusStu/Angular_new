@@ -1,0 +1,57 @@
+﻿<h1>Edit Person</h1>
+
+<form name="editForm" ng-submit="sendEditForm()" ng-model="peopleEdit">
+    <table style="border:1px solid black">
+
+        <tr>
+            <td>Id</td>
+            <td>{{peopleEdit.Id}}</td>
+        </tr>
+        <tr>
+            <td>Name</td>
+            <td>
+                <input name="name" ng-model="peopleEdit.Name" required />
+                <span id="validationInputs" ng-show="editForm.name.$touched && editForm.name.$invalid">The name is required.</span>
+            </td>
+        </tr>
+        <tr>
+            <td>Gender</td>
+            <td>
+                <input name="gender" ng-model="peopleEdit.Gender" required />
+                <span id="validationInputs" ng-show="editForm.gender.$touched && editForm.gender.$invalid">The gender is required.</span>
+            </td>
+        </tr>
+        <tr>
+            <td>City</td>
+            <td>
+                <input name="city" ng-model="peopleEdit.City" required />
+                <span id="validationInputs" ng-show="editForm.city.$touched && editForm.city.$invalid">The city is required.</span>
+        </tr>
+        <tr>
+            <td>Adress</td>
+            <td>
+                <input name="adress" ng-model="peopleEdit.Adress" required />
+                <span id="validationInputs" ng-show="editForm.adress.$touched && editForm.adress.$invalid">The adress is required.</span>
+            </td>
+        </tr>
+        <tr>
+            <td>Country</td>
+            <td>
+                <select name="country" ng-model="peopleEdit.Country" ng-options="item for item in countries" required>
+                    <option value="">- Choose Country -</option>
+                </select>
+                <span id="validationInputs" ng-show="editForm.country.$touched && editForm.country.$invalid">The country is required.</span>
+            </td>
+        </tr>
+    </table>
+    <input name="save" id="save" value="Save" class="btn btn-success" type="submit" />
+</form>
+<br />
+<a href="#/home">Back to People list</a>
+
+<style>
+    #validationInputs {
+    color: #ff0000;
+    
+}
+</style>

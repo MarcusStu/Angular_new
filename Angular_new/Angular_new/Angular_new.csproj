@@ -151,6 +151,7 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Templates\create.html" />
+    <Content Include="Templates\edit.html" />
     <Content Include="Templates\peopleDetail.html" />
     <Content Include="Templates\remove.html" />
     <Content Include="Views\Shared\Error.cshtml" />
@@ -209,6 +210,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\Country.cs" />
     <Compile Include="Models\MyContext.cs" />
     <Compile Include="Models\Person.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

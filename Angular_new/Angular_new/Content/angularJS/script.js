@@ -15,6 +15,10 @@ var app = angular.module("myApp", ["ngRoute"])
                              templateUrl: "/Templates/remove.html",
                              controller: "removeController"
                          })
+                         .when("/edit/:Id", {
+                             templateUrl: "/Templates/edit.html",
+                             controller: "editController"
+                         })
                         //.when("/courses", {
                         //    templateUrl: "/Templates/courses.html",
                         //    controller: "coursesController"
@@ -47,6 +51,10 @@ var app = angular.module("myApp", ["ngRoute"])
 })
 
 .controller("peopleDetailsController", function ($scope, $http, $routeParams) {
+    $http.get("People/GetCountries")
+        .then(function (response) {
+            $scope.countries = response.data;
+        })
     $http({
         url: "People/AjaxThatReturnsJsonPerson/" + $routeParams.Id,
 
@@ -59,6 +67,11 @@ var app = angular.module("myApp", ["ngRoute"])
 })
 
 .controller("createController", function ($scope, $http, $location) {
+    $http.get("People/GetCountries")
+        .then(function (response) {
+            $scope.countries = response.data;
+
+        })
 
     $scope.sendform = function () {
         console.log($scope.form);
@@ -78,6 +91,11 @@ var app = angular.module("myApp", ["ngRoute"])
 })
 
 .controller("removeController", function ($scope, $http, $routeParams, $location) {
+    $http.get("People/GetCountries")
+        .then(function (response) {
+            $scope.countries = response.data;
+        })
+
     $scope.param = $routeParams;
     $http({
         url: "People/AjaxThatReturnsJsonPerson/" + $routeParams.Id,
@@ -99,6 +117,40 @@ var app = angular.module("myApp", ["ngRoute"])
             $scope.successDelete = response.data;
             console.log(response.data);
             alert("Removed successfully!");
+            $location.url('/home')
+        })
+    }
+})
+
+.controller("editController", function ($scope, $http, $routeParams, $location) {
+    $http.get("People/GetCountries")
+        .then(function (response) {
+            $scope.countries = response.data;
+        })
+
+    $scope.param = $routeParams;
+    $http({
+        url: "People/AjaxThatReturnsJsonPerson/" + $routeParams.Id,
+        method: "get"
+    })
+    .then(function (response) {
+        $scope.peopleEdit = response.data;
+        console.log(response.data);
+    })
+
+    $scope.sendEditForm = function () {
+        console.log('editAjax ' + $scope.param.Id);
+        console.log('personEdit name: ' + $scope.peopleEdit.Name);
+        $http({
+            url: "People/Edit/" + $scope.param.Id,
+            method: "post",
+            data: { Id: $scope.peopleEdit.Id, Name: $scope.peopleEdit.Name, Gender: $scope.peopleEdit.Gender, Adress: $scope.peopleEdit.Adress, City: $scope.peopleEdit.City, Country: $scope.peopleEdit.Country },
+        })
+
+        .success(function (response) {
+            $scope.successEdit = response.data;
+            console.log(response.data);
+            alert("Edited successfully!");
             $location.url('/home')
         })
     }
